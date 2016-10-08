@@ -1,0 +1,69 @@
+<%- include base/header.ejs %>
+<div class="main main-page">
+	<div class="location clearfix">
+		<h1><a href="/" title="">首页</a></h1>
+	</div>
+	<div>
+		<p>新的首页</p>
+	</div>
+</div>
+<%- include base/baseJS.ejs %>
+<script>
+(function(){
+	var index = {
+		pre: $("#pre"),
+		next: $("#next"),
+		page: $(".page-turn").find('span').eq(0),
+		main: $(".chapter-col"),
+		nav_home: $(".navbar-option").find('.navbar-option-item').eq(0),
+		loading: $(".loading"),
+		pageCount: parseInt("<%=result.pageCount%>"),
+		initPage: function() {
+			this.nav_home.addClass("navbar-active");
+		},
+		getServerData: function(param, cb) {
+			global.getData("/api/getindex",param,cb);
+		},
+		updateByPage:function(){
+			var self = this;
+			var pageNow = global.getPageNow();
+			self.loading.show();
+			self.getServerData({
+				currentpage: pageNow
+			}, function(data) {
+				if (pageNow != global.getPageNow()) {
+					return;
+				}
+				if (data.ret == 200 && data.data && data.data.posts.length > 0) {
+					var compiled = template("listtemplate", data.data);
+					self.main.html(compiled);
+					self.page.text(data.data.currentPage + '/' + data.data.pageCount);
+					self.pre.removeAttr('class');
+					self.next.removeAttr('class');
+					if (data.data.currentPage == 1) {
+						self.pre.addClass('unCBtn');
+					}
+					if (data.data.currentPage == data.data.pageCount) {
+						self.next.addClass('unCBtn')
+					}
+					self.loading.hide();
+					$(window).scrollTop(0);
+				} else {
+					self.loading.hide();
+					sweetAlert('错误', '数据获取失败', 'error');
+				}
+			});
+		},
+		bindEvent: function() {
+			var self = this;
+			global.pageTurning.apply(self,["#pre","#next",self.pageCount,self.updateByPage]);
+		},
+		init: function() {
+			this.initPage();
+			this.bindEvent();
+		}
+	}
+	index.init();
+})();
+</script>
+<%- include base/footer.ejs %>
