@@ -22,14 +22,6 @@
                 <h1>午安网</h1>
                 <ul class="navbar-option">
                     <li><a href="/" class="navbar-icon navbar-option-item nav-h">首页</a></li>
-                    <% if (user) { %>
-                    <li><a href="/uGroup/<%=user.userID%>" class="navbar-icon navbar-option-item nav-mg">我的星球</a></li>
-                    <% } %>
-                    <li><a href="/allGroup" class="navbar-icon navbar-option-item nav-ag">全部星球</a></li>
-                    <% if (user) { %>
-                    <li><a href="/users" class="navbar-icon navbar-option-item nav-per">个人中心</a></li>
-                    <li><a href="/message" class="navbar-icon navbar-option-item nav-mes">消息中心<i class="red-point" id="mrp"></i></a></li>
-                    <% } %>
                 </ul>
                 <ul class="navbar-account">
                     <% if (user) { %>

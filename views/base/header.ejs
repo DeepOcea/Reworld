@@ -8,7 +8,6 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/sweetAlert.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/loading.css">
-        <link rel="stylesheet" type="text/css" href="/editor/wangEditor.min.css">
         <% if(title == '首页'){%>
         <title>午安网 - 过你想过的生活</title>
         <%}else{%>
@@ -40,9 +39,5 @@
             </ul>
             <ul class="navbar-option">
                 <li><a href="/" title="" class="navbar-option-item">首页</a></li>   
-                <% if (user) { %>
-                <li id="nav-myP"><a href="/uGroup/<%=user.userID%>" title="" class="navbar-option-item">我的星球</a></li>
-                <% } %>
-                <li id="nav-allP"><a href="/allGroup" title="" class="navbar-option-item">全部星球</a></li>
             </ul>
         </div>  
