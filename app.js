@@ -11,14 +11,10 @@ var MongoStore = require('connect-mongo/es5')(session);//node低于4.0版本使�
 var flash = require('connect-flash');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var page = require('./routes/page');
 var api = require('./routes/api');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var register = require('./routes/register');
-var createGroup = require('./routes/createGroup');
-var message = require('./routes/message');
-var uptoken = require('./routes/uptoken');
 var config = require('./config/config');
 var mongodb = require('./models/db.js');
 
@@ -91,23 +87,9 @@ app.use('/api/', api);
 
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/pages', page);
 app.use('/login', login);
+app.use('/logout', logout);
 app.use('/register',register);
-app.use('/createGroup', createGroup);
-app.use('/uGroup', uGroup);
-app.use('/topic', topic);
-app.use('/group', group);
-app.use('/allGroup', allGroup);
-app.use('/logout',logout);
-app.use('/isLogin',isLogin);
-app.use('/resetPassword',resetPassword);
-app.use('/verifyEmail',verifyEmail);
-app.use('/news',news);
-app.use('/message',message);
-app.use('/test',test);
-app.use('/uptoken',uptoken);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

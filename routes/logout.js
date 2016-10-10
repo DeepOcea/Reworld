@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             var data = JSON.parse(body);
             if (data.ret == 200) {//操作成功或失败均注销成功
                 req.session.destroy(function() {
-                    res.redirect('back');
+                    res.redirect('../');
                 });
             } 
         } else {
