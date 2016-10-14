@@ -188,7 +188,7 @@ span.navbar-account-item{
 	border-width: 1px;
 	width: 325px;
 	font-size: 16.97px;
-	-webkit-box-shadow: 0 0 0px 1000px white inset; 
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset; 
 }
 
 
@@ -196,6 +196,8 @@ span.navbar-account-item{
 	width: 275px;
 	height: 275px;
 	background: black;
+	margin-bottom: 40px;
+	
 }
 #login{
 	margin: 0 auto;
