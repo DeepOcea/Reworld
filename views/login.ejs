@@ -1,20 +1,23 @@
 <%- include base/header.ejs %>
-<div class="main">
-	<div class="login">
-		<form class="login-form line-form" action="/login" title="" method="post">
-			<div class="login-group line-fgroup">
-				<label for="email" class="label-e"></label>
-				<input type="email" name="email" value="" placeholder="邮箱" id="email">
-			</div>
-			<div class="login-group line-fgroup">
-				<label for="pw" class="label-paw"></label>
-				<input type="password" name="password" value="" placeholder="密码" id="pw">
-			</div>
-			<a href="/resetPassword" title="忘记密码">忘记密码？</a>
-			<a href="/register" title="注册账号" class="fR">注册账号</a>
-			<button id='login' type="submit">登录</button>
-		</form>
-	</div>
+<div class="main main-page">
+    <div class="location clearfix">
+        <h1><a href="/message" title="">登陆星球</a></h1>
+    </div>
+    <div class="content">
+        <div class="login">
+            <img src="/images/sadface.png"  alt="Logo" />
+            <form class="login-form line-form" action="/login" title="" method="post">
+                <div class="form-row bottom-line">
+                    <input type="email" name="email" value="" placeholder="邮箱" id="email">
+                </div>
+                <div class="form-row bottom-line">
+                    <input type="password" name="password" value="" placeholder="密码" id="pw">
+                </div>
+                <button id='login' type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+
 </div>
 <%- include base/baseJS.ejs %>
 <script type="text/javascript">

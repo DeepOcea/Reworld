@@ -153,24 +153,103 @@ span.navbar-account-item{
 ***************************/
 .main{
     position: relative;
-    width:780px;
+    width: 100%;
     min-height:100%;
     padding-top: 60px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 60px;
+    padding-left: 60px;
     margin:0 auto ;
 }
 .main-page{
     position: relative;
     padding-bottom: 70px;
 }
+.content{
+    position: relative;
+    width: 780px;
+    margin:0 auto ;
+    min-height:100%;
+}
 
 
 
 
+/********************
+*********当前位置***
+*******************/
+.location{
+    padding:25px 0 8px;
+    margin-left: 10%;
+}
+.location>h1{
+    float: left; 
+    font-size: 30px;
+    line-height: 35px;
+    color:#5ab8fe; 
+}
+.location>h1>a{
+   color:#5ab8fe; 
+}
 
 
+/************************
+基本样式复用区
+*************************/
+.form-row{
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.bottom-blue-line{
+    border-bottom: 1px solid #5ab8fe;
+}
 
 
+/*******************
+******登陆*********
+******************/
+.login{
+    margin: 0 auto ;
+    text-align:center
+}
 
+.login label{
+    display:inline-block;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    cursor:pointer;
+}
+.login input{
+    border:none;
+    width:100%;
+    background-color: transparent;
+    color:#b4b4b4;
+}
+
+.login-form{
+    width: 325px;
+    vertical-align: middle;
+    position: relative;
+    margin: 0px auto;
+}
+
+.login-form button[type="submit"]{  
+    font-size: 21px;
+    padding:8.5px 0;
+    border-radius: 7px;
+    margin-top: 35px;
+    width:100%;
+    background-color: #5ab8fe;
+    color:#f6fafb;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.login-form a{
+    font-size: 14px;
+    color:#5ab8fe;
+}
 
