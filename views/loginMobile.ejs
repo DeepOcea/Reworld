@@ -2,17 +2,26 @@
 <div class="main">
 	<div class="login">
 		<form class="login-form line-form" action="/login" title="" method="post">
-			<div class="login-group line-fgroup">
-				<label for="email" class="label-e"></label>
-				<input type="email" name="email" value="" placeholder="邮箱" id="email">
+			<div class="login-info">登录星球</div>
+			<div class="login-group-img">
+				<img ></img>
 			</div>
-			<div class="login-group line-fgroup">
-				<label for="pw" class="label-paw"></label>
-				<input type="password" name="password" value="" placeholder="密码" id="pw">
+			<div class="input">
+				<input type="email" name="email" value="" id="email" class="input-field">
+				<label for="email"  class="input-label">
+					<span class="input-label-content">邮箱</span>
+				</label>	
 			</div>
-			<a href="/resetPassword" title="">忘记密码？</a>
-			<a href="/register" title="" class="fR">注册账号</a>
-			<button id='login' type="submit">登录</button>
+
+
+			<div class="input">
+				<input type="password" name="password" class="input-field" value="" id="pw">
+				<label for="pw" class="input-label">
+					<span class="input-label-content">密码</span>
+				</label>
+			</div>
+			
+			<button id='login' type="submit">确定</button>
 		</form>
 	</div>
 </div>
