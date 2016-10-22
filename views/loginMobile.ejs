@@ -77,18 +77,6 @@
 
 		
 		verificate: function() {
-			/*
-			var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-			if (!myreg.test(this.email.val())) {
-				sweetAlert('格式错误', '请填写正确的邮箱！', 'warning');
-				return false;
-			}
-			if (this.pw.val().length == 0) {
-				sweetAlert('格式错误', '请填写密码！', 'warning');
-				return false;
-			}
-			*/
-
 			var errorMsg = validataFunc();
 			if(errorMsg){
 				sweetAlert('格式错误',errorMsg,'warning');
