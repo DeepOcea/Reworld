@@ -2,69 +2,153 @@
 <div class="main">
 	<div class="login">
 		<form class="login-form line-form" action="/login" title="" method="post">
+			<div class="login-info">登录星球</div>
+			<div class="login-group line-fgroup">
+				<img ></img>
+			</div>
 			<div class="login-group line-fgroup">
 				<label for="email" class="label-e"></label>
-				<input type="email" name="email" value="" placeholder="邮箱" id="email">
+				<input type="email" name="email" value="" placeholder="邮箱" id="email" class="input_field">
 			</div>
 			<div class="login-group line-fgroup">
 				<label for="pw" class="label-paw"></label>
-				<input type="password" name="password" value="" placeholder="密码" id="pw">
+				<input type="password" name="password" value="" placeholder="密码" id="pw" class="input_field>
 			</div>
-			<a href="/resetPassword" title="">忘记密码？</a>
-			<a href="/register" title="" class="fR">注册账号</a>
 			<button id='login' type="submit">登录</button>
 		</form>
 	</div>
 </div>
 <%- include base/baseJSMobile.ejs %>
 <script type="text/javascript">
-	(function() {
-		var login = {
-			email: $("#email"),
-			pw: $("#pw"),
-			loginform: $(".login-form"),
-			loading: $(".loading"),
-			verificate: function() {
-				var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-				if (!myreg.test(this.email.val())) {
-					sweetAlert('格式错误', '请填写正确的邮箱！', 'warning');
-					return false;
+	(function(){
+		
+		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+		var strategies = {
+			isEmpty : function(value,errorMsg){
+				if(value == ''){
+					return errorMsg;
 				}
-				if (this.pw.val().length == 0) {
-					sweetAlert('格式错误', '请填写密码！', 'warning');
-					return false;
+			},
+			isCorrectFormat:function(value,errorMsg){
+				if(!myreg.test(value)){
+					return errorMsg;
 				}
-				return true;
 			},
-			bindEvent: function() {
-				var self = this;
-				self.loginform.submit(function(event) {
-					event.preventDefault();
-					if (self.verificate()) {
-						self.loading.show();
-						global.subData('/login', {
-							email: self.email.val(),
-							password: self.pw.val()
-						}, function(data) {
-							self.loading.hide();
-							if (data.ret == 200 && data.data) {
-								if (data.data.code == 1) {
-									window.location.href = '/'; //登录成功
-								} else {
-									sweetAlert('提示', data.data.msg, 'warning');
-								}
-							} else {
-								sweetAlert('错误', data.msg, 'error');
-							}
-						});
-					}
-				});
-			},
-			init: function() {
-				this.bindEvent();
+		};
+
+		var Validator = function(){
+			this.cache = [];
+		};
+
+		Validator.prototype.add = function(dom,rules){
+			var self = this;
+			for(var i=0,rule;rule = rules[i++];){
+				(function(rule){
+					var strategyAry = rule.strategy.split(':');
+					var errorMsg = rule.errorMsg;
+
+					self.cache.push(function(){
+						var strategy = strategyAry.shift();
+						strategyAry.unshift(dom.val());
+						strategyAry.push(errorMsg);
+						return strategies[strategy].apply(dom,strategyAry);
+					});
+				})(rule)
 			}
+		};
+
+		Validator.prototype.start = function(){
+			for(var i=0,validatorFunc;validatorFunc = this.cache[i++];){
+				var errorMsg = validatorFunc();
+				if(errorMsg){
+					return errorMsg;
+				}
+			}
+		};
+
+		
+
+		var login = {
+		email: $("#email"),
+		pw: $("#pw"),
+		loginform: $(".login-form"),
+		loading: $(".loading"),
+
+		
+		verificate: function() {
+			/*
+			var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if (!myreg.test(this.email.val())) {
+				sweetAlert('格式错误', '请填写正确的邮箱！', 'warning');
+				return false;
+			}
+			if (this.pw.val().length == 0) {
+				sweetAlert('格式错误', '请填写密码！', 'warning');
+				return false;
+			}
+			*/
+
+			var errorMsg = validataFunc();
+			if(errorMsg){
+				sweetAlert('格式错误',errorMsg,'warning');
+				return false;
+			}
+			return true;
+		},
+		
+		bindEvent: function() {
+			var self = this;
+			self.loginform.submit(function(event) {
+				event.preventDefault();
+				if (self.verificate()) {
+					self.loading.show();
+					global.subData('/login',{
+						email: self.email.val(),
+						password: self.pw.val()
+					},function(data){
+						self.loading.hide();
+						if (data.ret == 200 && data.data) {
+							if (data.data.code == 1) {
+								window.location.href = '/'; //登录成功
+							} else {
+								sweetAlert('提示', data.data.msg, 'warning');
+							}
+						} else {
+							sweetAlert('错误', data.msg, 'error');
+						}
+					});
+				}
+			});
+		},
+
+		init: function() {
+			this.bindEvent();
 		}
-		login.init();
+	}
+
+	var validataFunc = function(){
+		var validator = new Validator();
+
+		validator.add(login.email,[{
+			strategy: 'isEmpty',
+			errorMsg: '邮箱不能为空！',
+		},{
+			strategy: 'isCorrectFormat',
+			errorMsg: '请填写正确的邮箱！',
+		}]);
+
+		validator.add(login.pw,[{
+			strategy: 'isEmpty',
+			errorMsg: '密码不能为空！',
+		}]);
+
+		var errorMsg = validator.start();
+		return errorMsg;
+	}
+
+
+	login.init();
 	})();
 </script>
 <%- include base/footerMobile.ejs %>
