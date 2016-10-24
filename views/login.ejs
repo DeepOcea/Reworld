@@ -8,13 +8,21 @@
         <div class="login">
             <img src="/images/sadface.png"  alt="Logo" />
             <form class="login-form line-form" action="/login" title="" method="post">
-                <div class="form-row bottom-blue-line">
-                    <input type="email" name="email" value="" placeholder="邮箱" id="email">
+                <div class="form-row bottom-blue-line input-field">
+                    <input class="input-content" type="email" name="email" value="" id="email">
+                    <label for="email"  class="input-label">
+						<span class="input-label-content">邮箱</span>
+					</label>
                 </div>
-                <div class="form-row bottom-blue-line">
-                    <input type="password" name="password" value="" placeholder="密码" id="pw">
+                <div class="form-row bottom-blue-line input-field">
+                    <input class="input-content" type="password" name="password" value="" id="pw">
+                    <label for="pw" class="input-label">
+						<span class="input-label-content">密码</span>
+					</label>
                 </div>
-                <button id='login' type="submit">登录</button>
+                <div class="position-middle submit-button">
+                	<button id='login' type="submit" class="button-style">登录</button>
+                </div>
             </form>
         </div>
     </div>
