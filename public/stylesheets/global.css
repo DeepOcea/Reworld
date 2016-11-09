@@ -169,6 +169,7 @@ span.navbar-account-item{
     width: 780px;
     margin:0 auto ;
     min-height:100%;
+    padding-top: 40px;
 }
 
 /********************
@@ -200,8 +201,11 @@ span.navbar-account-item{
 .bottom-blue-line{
     border-bottom: 1px solid #5ab8fe;
 }
-
-
+.text-ellipsis{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /*******************
 ******登陆*********
 ******************/
@@ -321,5 +325,43 @@ input:-webkit-autofill {
 .submit-button{
     margin: 70px;
 }
+/*******************
+******任务列表*********
+******************/
+div.mission-img{
+    height: 70px;
+    width: 70px;
+    float: left;
+    position: relative;
+    background-image:url("/images/login_01.png");
+    background-repeat: no-repeat;
 
-
+}
+div.mission-require{
+    display: inline-block;
+}
+p.mission-require,p.mission-detailmessage,.mission-employername{
+    display: inline;
+}
+p.mission-employername{
+    font-size: 35px;
+    color: #B4DCFA;
+}
+p.mission-detailmessage{
+    font-size:25px;
+    color:#B4DCFA;
+}
+p.mission-require{
+    color: #9B9B9B;
+    font-size: 25px;
+}
+div.mission-pay{
+    color:#B4DCFA;
+    position: absolute;
+    right: 0;
+    font-size: 30px;
+    top: 50%;
+}
+div.mission-employername{
+    display: inline-block;
+}

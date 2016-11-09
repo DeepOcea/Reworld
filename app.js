@@ -15,6 +15,7 @@ var api = require('./routes/api');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var register = require('./routes/register');
+var mission = require('./routes/mission');
 var config = require('./config/config');
 var mongodb = require('./models/db.js');
 
@@ -90,6 +91,7 @@ app.use('/', routes);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/register',register);
+app.use('/mission',mission);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
